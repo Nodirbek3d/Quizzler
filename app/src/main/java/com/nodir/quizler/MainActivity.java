@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.d("Quizzler", "Button is clicked");
-                Toast.makeText(getApplicationContext(), "True pressed", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "True pressed", Toast.LENGTH_SHORT).show();
             }
         };
 
