@@ -79,6 +79,7 @@
             android:textSize="20sp"
             android:text="@string/false_btn"
             android:background="@color/colorFalseButton"
+            android:textColor="@color/colorAccent"
             />
 
     </LinearLayout>
