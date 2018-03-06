@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Quizler</string>
+    <string name="app_name">Quizzler</string>
     <string name="true_btn">TRUE</string>
     <string name="false_btn">FALSE</string>
 
@@ -7,5 +7,15 @@
     <string name="score">Score 0/13</string>
 
     <string name="question_1">Lightning never strikes in the same place twice</string>
+    <string name="question_2">If you cry in space the tears just stick to your face</string>
+    <string name="question_3">If you cut an earthworm in half, both halves can regrow their body</string>
+    <string name="question_4">Humans can distinguish between over a trillion different smells</string>
+    <string name="question_5">Adults have fewer bones than babies do</string>
+    <string name="question_6">Napoleon Bonaparte was extremely short</string>
+    <string name="question_7">Goldfish only have a memory of three seconds</string>
+    <string name="question_8">There are more cells of bacteria in your body than there are human cells</string>
+    <string name="question_9">Your fingernails and hair keep growing after you die</string>
+    <string name="question_10">Birds are dinosaurs</string>
+    <string name="question_11"> It costs the U.S. Mint more to make pennies and nickels than the coins are actually worth</string>
 
 </resources>
