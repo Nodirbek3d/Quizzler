@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Quizler</string>
+    <string name="true_btn">TRUE</string>
+    <string name="false_btn">FALSE</string>
+
+
+    <string name="score">Score 0/13</string>
+
+    <string name="question_1">Lightning never strikes in the same place twice</string>
+
+</resources>
