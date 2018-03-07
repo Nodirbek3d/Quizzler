@@ -2,14 +2,10 @@ package com.nodir.quizler;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Iterator;
-import java.util.TreeMap;
 
 public class MainActivity extends Activity {
 
@@ -44,8 +40,7 @@ public class MainActivity extends Activity {
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getQuestion();
-                questionView.setText(questions[qIndex].getmQuestionID());
+                updateQuestion();
                 Toast.makeText(getApplicationContext(),"True Pressed", Toast.LENGTH_SHORT).show();
 
             }
@@ -54,16 +49,20 @@ public class MainActivity extends Activity {
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getQuestion();
-                questionView.setText(questions[qIndex].getmQuestionID());
+                updateQuestion();
                 Toast.makeText(getApplicationContext(),"False pressed", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-    private void getQuestion(){
-        qIndex++;
+    private void updateQuestion(){
+        if (++qIndex < questions.length){
+            int questionID = questions[qIndex].getmQuestionID();
+            questionView.setText(questionID);
+        } else {
+            qIndex = 0;
+        }
     }
 
 }
