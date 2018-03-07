@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
         int questionID = questions[qIndex].getmQuestionID();
         questionView.setText(questionID);
         mScore++;
-        mScoreTextView.setText(R.string.score + " " + mScore + "/" + questions.length);
+        mScoreTextView.setText(getString(R.string.score) + " " + mScore + "/" + questions.length);
         mProgressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
     }
 
