@@ -9,6 +9,10 @@
     <string name="correctToast">Correct!</string>
     <string name="incorrectToast">Wrong!</string>
 
+    <string name="alertTitle">Game Over</string>
+    <string name="alertMessage">You Scored %s points!</string>
+    <string name="alertPositiveButton">Close Application</string>
+
     <string name="question_1">Lightning never strikes in the same place twice</string>
     <string name="question_2">If you cry in space the tears just stick to your face</string>
     <string name="question_3">If you cut an earthworm in half, both halves can regrow their body</string>

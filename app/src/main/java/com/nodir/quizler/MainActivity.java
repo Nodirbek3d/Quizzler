@@ -1,6 +1,8 @@
 package com.nodir.quizler;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +31,7 @@ public class MainActivity extends Activity {
         new TrueFalse(R.string.question_10, true),
         new TrueFalse(R.string.question_11, true)
     };
-    private final int PROGRESS_BAR_INCREMENT = (int) Math.ceil(100.0 / questions.length);
+    private final int PROGRESS_BAR_INCREMENT = (int) Math.ceil(100.0 / (questions.length + 1));
     ProgressBar mProgressBar;
     TextView mScoreTextView;
 
@@ -65,6 +67,19 @@ public class MainActivity extends Activity {
 
     private void updateQuestion(){
         qIndex = (qIndex + 1) % questions.length;
+        if (qIndex == 0){
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle(getString(R.string.alertTitle));
+            alert.setCancelable(false);
+            alert.setMessage("You Scored " + mScore + " points!");
+            alert.setPositiveButton(getString(R.string.alertPositiveButton), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface anInterface, int i) {
+                    finish();
+                }
+            });
+            alert.show();
+        }
         int questionID = questions[qIndex].getmQuestionID();
         questionView.setText(questionID);
         mScore++;
