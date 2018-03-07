@@ -57,12 +57,9 @@ public class MainActivity extends Activity {
     }
 
     private void updateQuestion(){
-        if (++qIndex < questions.length){
-            int questionID = questions[qIndex].getmQuestionID();
-            questionView.setText(questionID);
-        } else {
-            qIndex = 0;
-        }
+        qIndex = (qIndex + 1) % questions.length;
+        int questionID = questions[qIndex].getmQuestionID();
+        questionView.setText(questionID);
     }
 
 }
