@@ -41,7 +41,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 updateQuestion();
-                Toast.makeText(getApplicationContext(),"True Pressed", Toast.LENGTH_SHORT).show();
+                checkAnswer(true);
+//                Toast.makeText(getApplicationContext(),"True Pressed", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -50,7 +51,8 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 updateQuestion();
-                Toast.makeText(getApplicationContext(),"False pressed", Toast.LENGTH_SHORT).show();
+                checkAnswer(false);
+//                Toast.makeText(getApplicationContext(),"False Pressed", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -60,6 +62,15 @@ public class MainActivity extends Activity {
         qIndex = (qIndex + 1) % questions.length;
         int questionID = questions[qIndex].getmQuestionID();
         questionView.setText(questionID);
+    }
+
+    private void checkAnswer(boolean userAnswer){
+        boolean correctAnswer = questions[qIndex].ismAnswer();
+        if (correctAnswer == userAnswer){
+            Toast.makeText(getApplicationContext(),R.string.correctToast, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(),R.string.incorrectToast, Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
