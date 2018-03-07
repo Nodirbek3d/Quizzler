@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ public class MainActivity extends Activity {
     private Button falseButton;
     private TextView questionView;
     private int qIndex = 0;
+    private int mScore;
     private TrueFalse[] questions =
     {
         new TrueFalse(R.string.question_1, false),
@@ -27,6 +29,10 @@ public class MainActivity extends Activity {
         new TrueFalse(R.string.question_10, true),
         new TrueFalse(R.string.question_11, true)
     };
+    private final int PROGRESS_BAR_INCREMENT = (int) Math.ceil(100.0 / questions.length);
+    ProgressBar mProgressBar;
+    TextView mScoreTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +40,9 @@ public class MainActivity extends Activity {
 
         trueButton = findViewById(R.id.true_button);
         falseButton = findViewById(R.id.false_button);
+        mProgressBar = findViewById(R.id.progressBar);
+        mScoreTextView = findViewById(R.id.score);
+
         questionView = findViewById(R.id.question_text_view);
         questionView.setText(questions[qIndex].getmQuestionID());
 
@@ -42,8 +51,6 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 updateQuestion();
                 checkAnswer(true);
-//                Toast.makeText(getApplicationContext(),"True Pressed", Toast.LENGTH_SHORT).show();
-
             }
         });
 
@@ -52,8 +59,6 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 updateQuestion();
                 checkAnswer(false);
-//                Toast.makeText(getApplicationContext(),"False Pressed", Toast.LENGTH_SHORT).show();
-
             }
         });
     }
@@ -62,6 +67,9 @@ public class MainActivity extends Activity {
         qIndex = (qIndex + 1) % questions.length;
         int questionID = questions[qIndex].getmQuestionID();
         questionView.setText(questionID);
+        mScore++;
+        mScoreTextView.setText(R.string.score + " " + mScore + "/" + questions.length);
+        mProgressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
     }
 
     private void checkAnswer(boolean userAnswer){
