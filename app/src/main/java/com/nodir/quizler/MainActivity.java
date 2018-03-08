@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
     private Button trueButton;
     private Button falseButton;
     private TextView questionView;
-    private int qIndex = 0;
+    private int qIndex;
     private int mScore;
     private TrueFalse[] questions =
     {
@@ -40,6 +40,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if (savedInstanceState != null){
+            mScore = savedInstanceState.getInt("Score");
+            qIndex = savedInstanceState.getInt("IndexKey");
+        } else {
+            mScore = 0;
+            qIndex = 0;
+        }
+
         trueButton = findViewById(R.id.true_button);
         falseButton = findViewById(R.id.false_button);
         mProgressBar = findViewById(R.id.progressBar);
@@ -48,19 +56,20 @@ public class MainActivity extends Activity {
         questionView = findViewById(R.id.question_text_view);
         questionView.setText(questions[qIndex].getmQuestionID());
 
+        mScoreTextView.setText(getString(R.string.score) + " " + mScore + "/" + questions.length);
         trueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateQuestion();
                 checkAnswer(true);
+                updateQuestion();
             }
         });
 
         falseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateQuestion();
                 checkAnswer(false);
+                updateQuestion();
             }
         });
     }
@@ -82,7 +91,6 @@ public class MainActivity extends Activity {
         }
         int questionID = questions[qIndex].getmQuestionID();
         questionView.setText(questionID);
-        mScore++;
         mScoreTextView.setText(getString(R.string.score) + " " + mScore + "/" + questions.length);
         mProgressBar.incrementProgressBy(PROGRESS_BAR_INCREMENT);
     }
@@ -90,10 +98,17 @@ public class MainActivity extends Activity {
     private void checkAnswer(boolean userAnswer){
         boolean correctAnswer = questions[qIndex].ismAnswer();
         if (correctAnswer == userAnswer){
+            ++mScore;
             Toast.makeText(getApplicationContext(),R.string.correctToast, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(),R.string.incorrectToast, Toast.LENGTH_SHORT).show();
         }
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("Score Key", mScore);
+        outState.putInt("IndexKey", qIndex);
+    }
 }
